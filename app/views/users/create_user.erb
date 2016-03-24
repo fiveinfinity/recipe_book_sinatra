@@ -1,8 +1,11 @@
-<% unless locals.empty? %>
-  <%= locals[:message] %>
-<% end %>
+
 
 <h2>Sign Up Page</h2>
+<h1>
+  <% unless locals.empty? %>
+  <%= message %>
+<% end %>
+</h1>
 
 <form action="/signup" method="POST">
   <input type="text" name="username" placeholder="Username:">
