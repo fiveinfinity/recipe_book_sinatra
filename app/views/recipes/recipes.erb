@@ -1,0 +1,42 @@
+<% unless locals.empty? %>
+  <%= locals[:message] %>
+<% end %>
+
+<h1>Welcome, <%=@user.username%>!</h1>
+<!-- create a new recipe -->
+<form action="/recipes/new" method="get">
+  <input type="submit" value="New Recipe">
+</form>
+<!-- logout -->
+<form action="/logout" method="get">
+  <input type="submit" value="Logout">
+</form>
+
+<%@recipe.each do |recipe|%>
+  <% if recipe.user_id == @user.id %>
+    <h3><%= recipe.name %></h3>
+    <%= recipe.ingredients %><br>
+    <%= recipe.recipe %><br>
+
+    <form action="/recipes/<%= recipe.id %>/delete" method="post">
+      <input id="hidden" type="hidden" name="_method" value="DELETE">
+      <input type="submit" value="Delete Recipe">
+    </form>
+    <form action="/recipes/<%= recipe.id %>/edit" method="get">
+      <input type="submit" value="Edit Recipe">
+    </form>
+    <form action="/recipes/<%= recipe.id %>" method="get">
+      <input type="submit" value="Show Recipe">
+    </form>
+  <%end%>
+<%end%>
+  <br><br>
+  <h2>See other's Recipes!</h2>
+
+<%@recipe.each do |recipe|%>
+  <% if recipe.user_id != @user.id %>
+    <h3><%= recipe.name %></h3>
+    <%= recipe.ingredients %><br>
+    <%= recipe.recipe %><br>
+  <%end%>
+<%end%>

@@ -1,0 +1,22 @@
+<% unless locals.empty? %>
+  <%= message %>
+<% end %>
+
+<h3>Recipe Name: </h3><%=@recipe.name%><br>
+<h3>Ingredients: </h3><%=@recipe.ingredients%><br>
+<h3>Directions: </h3><%=@recipe.recipe%><br>
+
+
+<form action="/recipes/<%= @recipe.id %>" method="post">
+  <input id="hidden" type="hidden" name="_method" value="PATCH">
+  <input type="submit" value="Edit Recipe">
+</form>
+
+<form action="/recipes/<%= @recipe.id %>/delete" method="post">
+  <input id="hidden" type="hidden" name="_method" value="DELETE">
+  <input type="submit" value="Delete Recipe">
+</form>
+
+<form action="/recipes" method="get">
+  <input type="submit" value="Show all Recipes">
+</form>
