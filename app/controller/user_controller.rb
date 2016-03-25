@@ -12,9 +12,10 @@ class UserController < ApplicationController
   end
 
   post '/signup' do
-    if params[:username] == "" || params[:email] == "" || params[:password] == ""
-      erb :error, :locals => {message: "Your Signup Information was Invalid."}
-      #redirect '/signup', locals: {message: "Message here."}
+    if params[:username] == 'error'
+    # if params[:username] == "" || params[:email] == "" || params[:password] == ""
+      # erb :error, :locals => {message: "Your Signup Information was Invalid."}
+      redirect '/signup', locals: {message: "Message here."}
     else
       @user = User.create(username: params[:username], email: params[:email], password: params[:password])
       session["user_id"] = @user.id

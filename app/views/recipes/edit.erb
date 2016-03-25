@@ -1,7 +1,3 @@
-<% unless locals.empty? %>
-  <%= message %>
-<% end %>
-
 <h1>Edit the Recipe</h1>
 <form action="/recipes/<%=@recipe.id%>" method="post">
   <input id="hidden" type="hidden" name="_method" value="patch">

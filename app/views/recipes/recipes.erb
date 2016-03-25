@@ -1,7 +1,3 @@
-<% unless locals.empty? %>
-  <%= locals[:message] %>
-<% end %>
-
 <h1>Welcome, <%=@user.username%>!</h1>
 <!-- create a new recipe -->
 <form action="/recipes/new" method="get">
