@@ -1,3 +1,7 @@
+<% unless locals.empty? %>
+  <%= message %>
+<% end %>
+
 <h3>Recipe Name: </h3><%=@recipe.name%><br>
 <h3>Ingredients: </h3><%=@recipe.ingredients%><br>
 <h3>Directions: </h3><%=@recipe.recipe%><br>

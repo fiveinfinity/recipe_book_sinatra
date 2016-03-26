@@ -1,3 +1,7 @@
+<% unless locals.empty? %>
+  <%= message %>
+<% end %>
+
 <form action="/recipes" method="post">
   <label>Create Recipe: </label><br><br>
     <input type="text" name="name" placeholder="Recipe Name:"><br>

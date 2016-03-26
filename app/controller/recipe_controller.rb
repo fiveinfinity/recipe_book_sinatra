@@ -10,12 +10,12 @@ class RecipeController < ApplicationController
   end
 
   post '/recipes' do
-    if params.empty?
-      redirect to "/recipes/new", locals: {message: "Your recipe was empty."}
+    if params[:name] == "" || params[:ingredients] == "" || params[:recipe] == ""
+      erb :'/recipes/create', locals: {message: "Your recipe was empty."}
     else
       @user = User.find_by_id(session["user_id"])
       @recipe = Recipe.create(name: params[:name], ingredients: params[:ingredients], recipe: params[:recipe], user_id: @user.id)
-      redirect to "/recipes/#{@recipe.id}", locals: {message: "Successfully created recipe."}
+      erb :'recipes/show', locals: {message: "Successfully created recipe."}
     end
   end
 
@@ -55,7 +55,7 @@ class RecipeController < ApplicationController
       @recipe.ingredients = params[:ingredients]
       @recipe.recipe = params[:recipe]
       @recipe.save
-      redirect "/recipes", locals: {message: "Recipe was successfully edited."}
+      redirect '/recipes'
     end
   end
 
